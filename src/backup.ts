@@ -62,7 +62,7 @@ const deleteFile = async (path: string) => {
     })
 }
 
-export const backup = async () => {
+export const backup = async (): Promise<string> => {
     console.log("Initiating DB backup...")
 
     let date = new Date().toISOString()
@@ -76,4 +76,6 @@ export const backup = async () => {
     await deleteFile(filepath);
 
     console.log("DB backup complete...");
+
+    return filename;
 }
