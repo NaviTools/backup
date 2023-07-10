@@ -19,5 +19,10 @@ export const env = envsafe({
     default: '',
     allowEmpty: true,
   }),
-  ROLLBAR_ACCESS_TOKEN: str()
+  ROLLBAR_ACCESS_TOKEN: str(),
+  RAILWAY_GIT_COMMIT_SHA: str({
+    desc: 'The SHA of the GIT commit that triggered the deployment.',
+    default: 'undefined',
+    allowEmpty: true,
+  })
 });
