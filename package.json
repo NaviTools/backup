@@ -1,0 +1,32 @@
+{
+  "name": "postgress-backup",
+  "version": "0.0.1",
+  "description": "Backup service for the database",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navitools/backup.git"
+  },
+  "author": "Javier Bullrich <javier@bullrich.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/navitools/backup/issues"
+  },
+  "homepage": "https://github.com/navitools/backup#readme",
+  "devDependencies": {
+    "@types/cron": "^2.0.1",
+    "@types/node": "^20.4.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.367.0",
+    "cron": "^2.3.1",
+    "dotenv": "^16.3.1",
+    "envsafe": "^2.0.3",
+    "rollbar": "^2.26.2"
+  }
+}
