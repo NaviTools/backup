@@ -22,6 +22,6 @@ const job = new CronJob(env.BACKUP_CRON_SCHEDULE, async () => {
 
 job.start();
 
-rollbar.info("New deployed triggered by commit", env.RAILWAY_GIT_COMMIT_SHA);
+rollbar.log("New deployed triggered by commit", env.RAILWAY_GIT_COMMIT_SHA);
 
 console.log("Backup cron scheduled...");
