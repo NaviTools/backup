@@ -4,3 +4,6 @@ dist/
 .vscode/
 .env
 backup-*.tar.gz
+
+# Sentry Config File
+.sentryclirc

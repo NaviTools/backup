@@ -14,7 +14,8 @@ export const env = envsafe({
     default: '',
     allowEmpty: true,
   }),
-  SERVICE_NAME:str({
+  SERVICE_NAME: str({
     desc: 'The name of the service that do the backup'
-  })
+  }),
+  SENTRY_DSN: str()
 });

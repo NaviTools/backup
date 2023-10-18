@@ -4,8 +4,9 @@
   "description": "Backup service for the database",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "tsc && npm run sentry:sourcemaps",
+    "start": "node dist/index.js",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org navitools --project backup ./dist && sentry-cli sourcemaps upload --org navitools --project backup ./dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,9 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.367.0",
+    "@sentry/cli": "^2.21.2",
+    "@sentry/node": "^7.74.1",
+    "@sentry/profiling-node": "^1.2.1",
     "dotenv": "^16.3.1",
     "envsafe": "^2.0.3"
   }
