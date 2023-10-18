@@ -63,16 +63,16 @@ const deleteFile = async (path: string) => {
 }
 
 export const backup = async (): Promise<string> => {
-    console.log("Initiating DB backup...")
+    console.log(`Initiating DB backup by ${env.SERVICE_NAME}...`);
 
     let date = new Date().toISOString()
     const timestamp = date.replace(/[:.]+/g, '-')
-    const filename = `backup-${timestamp}.tar.gz`
+    const filename = `backup-${timestamp}-${env.SERVICE_NAME}.tar.gz`
     const filepath = `/tmp/${filename}`
 
     await dumpToFile(filepath);
 
-    await uploadToS3({ name: filename, path: filepath })
+    await uploadToS3({ name: filename, path: filepath });
     await deleteFile(filepath);
 
     console.log("DB backup complete...");

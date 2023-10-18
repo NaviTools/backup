@@ -9,20 +9,12 @@ export const env = envsafe({
   BACKUP_DATABASE_URL: str({
     desc: 'The connection string of the database to backup.'
   }),
-  BACKUP_CRON_SCHEDULE: str({
-    desc: 'The cron schedule to run the backup on.',
-    default: '0 5 * * *',
-    allowEmpty: true
-  }),
   AWS_S3_ENDPOINT: str({
     desc: 'The S3 custom endpoint you want to use.',
     default: '',
     allowEmpty: true,
   }),
-  ROLLBAR_ACCESS_TOKEN: str(),
-  RAILWAY_GIT_COMMIT_SHA: str({
-    desc: 'The SHA of the GIT commit that triggered the deployment.',
-    default: 'undefined',
-    allowEmpty: true,
+  SERVICE_NAME:str({
+    desc: 'The name of the service that do the backup'
   })
 });
