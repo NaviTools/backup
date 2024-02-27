@@ -38,17 +38,10 @@ const dumpToFile = async (path: string) => {
 
     await new Promise((resolve, reject) => {
         exec(
-            `pg_dump --dbname=${env.BACKUP_DATABASE_URL} --format=tar | gzip > ${path}`,
+            `pg_dump --dbname=${env.BACKUP_DATABASE_URL} > ${path}`,
             (error, stdout, stderr) => {
                 if (error) {
                     reject({ error: JSON.stringify(error), stderr });
-                    return;
-                }
-
-                // check if archive is valid and contains data
-                const isValidArchive = (execSync(`gzip -cd ${path} | head -c1`).length == 1) ? true : false;
-                if (isValidArchive == false) {
-                    reject({ error: "Backup archive file is invalid or empty; check for errors above" });
                     return;
                 }
 
@@ -89,12 +82,18 @@ export const backup = async (): Promise<string> => {
 
     let date = new Date().toISOString()
     const timestamp = date.replace(/[:.]+/g, '-')
-    const filename = `backup-${timestamp}-${env.SERVICE_NAME}.tar.gz`
+    const filePattern = `backup-${timestamp}-${env.SERVICE_NAME}`;
+    const filename = `${filePattern}.dump`
     const filepath = `/tmp/${filename}`
 
     await dumpToFile(filepath);
 
-    await uploadToS3({ name: filename, path: filepath });
+    const zipFile = `/tmp/${filePattern}.zip`;
+
+    execSync(`zip ${zipFile} ${filepath}`);
+    console.log("Ziped filesize:", filesize(statSync(zipFile).size));
+
+    await uploadToS3({ name: `${filePattern}.zip`, path: zipFile });
     await deleteFile(filepath);
 
     console.log("DB backup complete...");
