@@ -25,7 +25,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.367.0",
     "@sentry/cli": "^2.21.2",
-    "@sentry/node": "^7.74.1",
+    "@sentry/node": "^7.119.2",
     "@sentry/profiling-node": "^1.2.1",
     "dotenv": "^16.3.1",
     "envsafe": "^2.0.3",
