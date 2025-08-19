@@ -9,6 +9,11 @@ export const env = envsafe({
   BACKUP_DATABASE_URL: str({
     desc: 'The connection string of the database to backup.'
   }),
+  DATABASE_TYPE: str({
+    desc: 'The type of database to backup (postgres or mariadb)',
+    choices: ['postgres', 'mariadb'],
+    default: 'postgres'
+  }),
   AWS_S3_ENDPOINT: str({
     desc: 'The S3 custom endpoint you want to use.',
     default: '',
