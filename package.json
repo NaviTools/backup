@@ -30,6 +30,7 @@
     "@sentry/profiling-node": "^1.2.1",
     "dotenv": "^16.3.1",
     "envsafe": "^2.0.3",
-    "filesize": "^10.1.0"
+    "filesize": "^10.1.0",
+    "mysql2": "^3.6.0"
   }
 }
