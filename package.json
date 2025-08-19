@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc && npm run sentry:sourcemaps",
+    "build:typescript": "tsc",
     "start": "node dist/index.js",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org navitools --project backup ./dist && sentry-cli sourcemaps upload --org navitools --project backup ./dist"
   },
